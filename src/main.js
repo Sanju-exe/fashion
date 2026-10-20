@@ -3,7 +3,7 @@ import { REAL_GARMENTS, REAL_HUMAN_MODELS } from './data/clothes.js';
 import { initPoseDetector, extractTorsoGeometry } from './services/poseDetector.js';
 import { preloadGarmentImage, TorsoSmoother, renderVirtualGarment, captureStudioSnapshot } from './services/arEngine.js';
 
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000';
 
 /* ==========================================================================
    APPLICATION STATE
