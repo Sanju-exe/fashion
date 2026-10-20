@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="denimBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#304e75" />
+      <stop offset="40%" stop-color="#243c5a" />
+      <stop offset="100%" stop-color="#18273b" />
+    </linearGradient>
+    <linearGradient id="denimWash" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#557da8" stop-opacity="0.3"/>
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0a121c" stop-opacity="0.4"/>
+    </linearGradient>
+    <filter id="denimShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0b131e" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#denimShadow)">
+    <path d="
+      M 310 120
+      C 340 145, 460 145, 490 120
+      C 555 138, 635 172, 725 235
+      C 705 290, 680 345, 650 380
+      C 605 345, 580 320, 565 300
+      L 565 835
+      C 565 850, 550 860, 535 860
+      L 265 860
+      C 250 860, 235 850, 235 835
+      L 235 300
+      C 220 320, 195 345, 150 380
+      C 120 345,  95 290,  75 235
+      C 165 172, 245 138, 310 120
+      Z"
+      fill="url(#denimBase)"
+      stroke="#172436"
+      stroke-width="2"
+    />
+  </g>
+
+  <!-- Faded Wash Overlay -->
+  <path d="
+    M 310 120
+    C 340 145, 460 145, 490 120
+    C 555 138, 635 172, 725 235
+    C 705 290, 680 345, 650 380
+    C 605 345, 580 320, 565 300
+    L 565 835
+    L 235 835
+    L 235 300
+    C 220 320, 195 345, 150 380
+    C 120 345,  95 290,  75 235
+    C 165 172, 245 138, 310 120
+    Z"
+    fill="url(#denimWash)"
+  />
+
+  <!-- Golden-Ochre Western Yoke Stitching -->
+  <path d="M 235 240 C 310 270, 370 230, 400 245 C 430 230, 490 270, 565 240" stroke="#d9822b" stroke-width="2" stroke-dasharray="5,3" fill="none"/>
+  <path d="M 235 244 C 310 274, 370 234, 400 249 C 430 234, 490 274, 565 244" stroke="#d9822b" stroke-width="1" stroke-dasharray="5,3" fill="none"/>
+
+  <!-- Placket with Golden Stitching -->
+  <rect x="388" y="220" width="24" height="640" fill="#20334d" stroke="#d9822b" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Silver Snap Buttons -->
+  <g fill="#cbd5e1" stroke="#475569" stroke-width="1.5">
+    <circle cx="400" cy="270" r="7"/>
+    <circle cx="400" cy="370" r="7"/>
+    <circle cx="400" cy="470" r="7"/>
+    <circle cx="400" cy="570" r="7"/>
+    <circle cx="400" cy="670" r="7"/>
+    <circle cx="400" cy="770" r="7"/>
+  </g>
+  <!-- Button core highlights -->
+  <g fill="#ffffff">
+    <circle cx="398" cy="268" r="2"/>
+    <circle cx="398" cy="368" r="2"/>
+    <circle cx="398" cy="468" r="2"/>
+    <circle cx="398" cy="568" r="2"/>
+    <circle cx="398" cy="668" r="2"/>
+    <circle cx="398" cy="768" r="2"/>
+  </g>
+
+  <!-- Dual Western Flap Pockets -->
+  <!-- Left Pocket -->
+  <g transform="translate(265, 310)">
+    <path d="M 0 30 L 95 30 L 95 120 C 95 135, 60 145, 47.5 145 C 35 145, 0 135, 0 120 Z" fill="#1b2b40" stroke="#d9822b" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <!-- Pointed Pocket Flap -->
+    <path d="M -2 0 L 97 0 L 97 30 L 47.5 45 L -2 30 Z" fill="#243954" stroke="#d9822b" stroke-width="1.8"/>
+    <circle cx="47.5" cy="25" r="5" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
+  </g>
+  <!-- Right Pocket -->
+  <g transform="translate(440, 310)">
+    <path d="M 0 30 L 95 30 L 95 120 C 95 135, 60 145, 47.5 145 C 35 145, 0 135, 0 120 Z" fill="#1b2b40" stroke="#d9822b" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <path d="M -2 0 L 97 0 L 97 30 L 47.5 45 L -2 30 Z" fill="#243954" stroke="#d9822b" stroke-width="1.8"/>
+    <circle cx="47.5" cy="25" r="5" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
+  </g>
+
+  <!-- Structured Denim Collar -->
+  <path d="M 305 120 L 350 230 L 400 220 L 350 135 Z" fill="#2a4261" stroke="#d9822b" stroke-width="1.8"/>
+  <path d="M 495 120 L 450 230 L 400 220 L 450 135 Z" fill="#20334d" stroke="#d9822b" stroke-width="1.8"/>
+  <path d="M 350 135 C 375 145, 425 145, 450 135 C 440 115, 360 115, 350 135 Z" fill="#131e2e"/>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cyberBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121318" />
+      <stop offset="50%" stop-color="#0b0c10" />
+      <stop offset="100%" stop-color="#050608" />
+    </linearGradient>
+    <linearGradient id="neonGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f3ff" />
+      <stop offset="50%" stop-color="#ff007f" />
+      <stop offset="100%" stop-color="#ffe600" />
+    </linearGradient>
+    <linearGradient id="metalChrome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#8a9ba8"/>
+      <stop offset="50%" stop-color="#1b232a"/>
+      <stop offset="75%" stop-color="#e0e8f0"/>
+      <stop offset="100%" stop-color="#3a4b58"/>
+    </linearGradient>
+    <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Shirt Outline -->
+  <path d="
+    M 315 115
+    C 345 145, 455 145, 485 115
+    C 550 135, 635 170, 725 235
+    C 705 290, 680 350, 655 385
+    C 610 350, 585 325, 570 305
+    L 570 830
+    C 570 845, 555 855, 540 855
+    L 260 855
+    C 245 855, 230 845, 230 830
+    L 230 305
+    C 215 325, 190 350, 145 385
+    C 120 350,  95 290,  75 235
+    C 165 170, 250 135, 315 115
+    Z"
+    fill="url(#cyberBase)"
+    stroke="#1f242e"
+    stroke-width="2"
+  />
+
+  <!-- Futuristic Tactical Seam Lines -->
+  <path d="M 230 305 L 340 230 L 460 230 L 570 305" stroke="#00f3ff" stroke-width="1.5" opacity="0.4" stroke-dasharray="4,6"/>
+  <line x1="280" y1="830" x2="280" y2="350" stroke="#252936" stroke-width="1.5"/>
+  <line x1="520" y1="830" x2="520" y2="350" stroke="#252936" stroke-width="1.5"/>
+
+  <!-- Neon Graphic Artwork on Chest -->
+  <g transform="translate(400, 380)">
+    <!-- Glowing background aura -->
+    <rect x="-140" y="-100" width="280" height="200" rx="8" fill="#090a10" stroke="#1f2330" stroke-width="1.5"/>
+    <rect x="-135" y="-95" width="270" height="190" rx="6" fill="none" stroke="url(#neonGlow)" stroke-width="2" filter="url(#neonBlur)" opacity="0.85"/>
+
+    <!-- Chrome Typographic emblem -->
+    <text x="0" y="-45" font-family="'Orbitron', 'Plus Jakarta Sans', monospace" font-size="24" font-weight="900" fill="url(#metalChrome)" text-anchor="middle" letter-spacing="6">NEO // MATRIX</text>
+    <text x="0" y="-20" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#00f3ff" text-anchor="middle" letter-spacing="8">サイバーパンク 2088</text>
+
+    <!-- Center Cyber Geometric Core -->
+    <polygon points="0,-10 40,25 -40,25" fill="none" stroke="#ff007f" stroke-width="2.5" filter="url(#neonBlur)"/>
+    <circle cx="0" cy="15" r="8" fill="#ffe600"/>
+    <circle cx="0" cy="15" r="18" fill="none" stroke="#00f3ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+    <!-- Barcode & Subtext -->
+    <g transform="translate(0, 55)" stroke="#00f3ff" stroke-width="2" opacity="0.8">
+      <line x1="-80" y1="0" x2="-80" y2="20"/>
+      <line x1="-75" y1="0" x2="-75" y2="20" stroke-width="4"/>
+      <line x1="-66" y1="0" x2="-66" y2="20"/>
+      <line x1="-60" y1="0" x2="-60" y2="20" stroke-width="3"/>
+      <line x1="-50" y1="0" x2="-50" y2="20"/>
+      <line x1="-42" y1="0" x2="-42" y2="20" stroke-width="5"/>
+      <line x1="-30" y1="0" x2="-30" y2="20"/>
+    </g>
+    <text x="35" y="68" font-family="monospace" font-size="9" fill="#a0aec0" letter-spacing="1">VER. 4.9.0-AR</text>
+  </g>
+
+  <!-- Ribbed Collar -->
+  <path d="M 315 115 C 345 155, 455 155, 485 115 C 465 98, 335 98, 315 115 Z" fill="#181a22" stroke="#00f3ff" stroke-width="1.2" opacity="0.9"/>
+  <path d="M 325 115 C 350 145, 450 145, 475 115 C 455 105, 345 105, 325 115 Z" fill="#050608"/>
+</svg>

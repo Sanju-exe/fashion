@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="onyxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e2025" />
+      <stop offset="45%" stop-color="#141518" />
+      <stop offset="100%" stop-color="#0a0a0c" />
+    </linearGradient>
+    <linearGradient id="onyxShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a2c33" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07080a" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="onyxHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Shadow drop -->
+  <g filter="url(#softShadow)">
+    <!-- Base Shirt Silhouette -->
+    <!-- Left Sleeve, Torso, Right Sleeve -->
+    <path d="
+      M 320 120
+      C 350 148, 450 148, 480 120
+      C 540 135, 620 170, 710 230
+      C 690 280, 670 340, 645 375
+      C 600 345, 575 320, 560 305
+      L 560 820
+      C 560 835, 545 845, 530 845
+      L 270 845
+      C 255 845, 240 835, 240 820
+      L 240 305
+      C 225 320, 200 345, 155 375
+      C 130 340, 110 280, 90 230
+      C 180 170, 260 135, 320 120
+      Z"
+      fill="url(#onyxGrad)"
+      stroke="#2c2d33"
+      stroke-width="2"
+    />
+  </g>
+
+  <!-- Fabric Lighting and Highlights -->
+  <path d="
+    M 320 120
+    C 350 148, 450 148, 480 120
+    C 540 135, 620 170, 710 230
+    C 690 280, 670 340, 645 375
+    C 600 345, 575 320, 560 305
+    L 560 820
+    L 240 820
+    L 240 305
+    C 225 320, 200 345, 155 375
+    C 130 340, 110 280, 90 230
+    C 180 170, 260 135, 320 120
+    Z"
+    fill="url(#onyxHighlight)"
+  />
+
+  <!-- Armpit and Side Folds -->
+  <path d="M 240 305 C 260 360, 265 440, 255 520" stroke="#08080a" stroke-width="4" fill="none" opacity="0.6"/>
+  <path d="M 560 305 C 540 360, 535 440, 545 520" stroke="#08080a" stroke-width="4" fill="none" opacity="0.6"/>
+  <!-- Chest Drape Folds -->
+  <path d="M 330 220 C 370 270, 430 270, 470 220" stroke="#25272e" stroke-width="2.5" fill="none" opacity="0.4"/>
+  <path d="M 350 320 C 385 360, 415 360, 450 320" stroke="#08080a" stroke-width="2.5" fill="none" opacity="0.5"/>
+
+  <!-- Left Sleeve Seam -->
+  <path d="M 240 305 C 235 250, 230 190, 230 150" stroke="#0a0b0d" stroke-width="3" fill="none"/>
+  <path d="M 241 305 C 236 250, 231 190, 231 150" stroke="#353740" stroke-width="1.2" fill="none" opacity="0.6"/>
+
+  <!-- Right Sleeve Seam -->
+  <path d="M 560 305 C 565 250, 570 190, 570 150" stroke="#0a0b0d" stroke-width="3" fill="none"/>
+  <path d="M 559 305 C 564 250, 569 190, 569 150" stroke="#353740" stroke-width="1.2" fill="none" opacity="0.6"/>
+
+  <!-- Sleeve Cuffs -->
+  <path d="M 90 230 L 155 375" stroke="#2c2e36" stroke-width="5" stroke-dasharray="6,4" fill="none"/>
+  <path d="M 710 230 L 645 375" stroke="#2c2e36" stroke-width="5" stroke-dasharray="6,4" fill="none"/>
+
+  <!-- Ribbed Crewneck Collar -->
+  <path d="M 320 120 C 350 162, 450 162, 480 120 C 460 102, 340 102, 320 120 Z" fill="#1b1c20" stroke="#383b44" stroke-width="2"/>
+  <path d="M 330 126 C 360 158, 440 158, 470 126" stroke="#484b57" stroke-width="1.5" stroke-dasharray="3,3" fill="none"/>
+
+  <!-- Inner Collar Cavity (Transparent cutout for natural neck showthrough) -->
+  <path d="M 332 118 C 360 148, 440 148, 468 118 C 445 106, 355 106, 332 118 Z" fill="#08080a" opacity="0.95"/>
+
+  <!-- Minimalist Atelier Brand Logo on Chest -->
+  <g transform="translate(370, 270)">
+    <rect x="-10" y="-8" width="80" height="20" rx="3" fill="#1d1e23" stroke="#3d404d" stroke-width="0.8"/>
+    <text x="30" y="6" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="8" font-weight="700" fill="#d1d5db" text-anchor="middle" letter-spacing="2.5">ATELIER 01</text>
+  </g>
+
+  <!-- Bottom Hem Stitching -->
+  <line x1="240" y1="835" x2="560" y2="835" stroke="#2a2c33" stroke-width="2" stroke-dasharray="5,4"/>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="linenBase" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#faf8f5" />
+      <stop offset="100%" stop-color="#ede8e1" />
+    </linearGradient>
+    <pattern id="bretonPattern" width="100" height="42" patternUnits="userSpaceOnUse">
+      <rect width="100" height="26" fill="#faf8f5"/>
+      <rect y="26" width="100" height="16" fill="#162947"/>
+    </pattern>
+    <filter id="linenShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#111c2e" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#linenShadow)">
+    <!-- Base Shirt Shape with Pattern -->
+    <path d="
+      M 315 125
+      C 345 150, 455 150, 485 125
+      C 550 140, 630 175, 720 235
+      C 700 290, 675 345, 650 380
+      C 605 345, 580 320, 565 300
+      L 565 830
+      C 565 845, 550 855, 535 855
+      L 265 855
+      C 250 855, 235 845, 235 830
+      L 235 300
+      C 220 320, 195 345, 150 380
+      C 125 345, 100 290,  80 235
+      C 170 175, 250 140, 315 125
+      Z"
+      fill="url(#bretonPattern)"
+      stroke="#162947"
+      stroke-width="1.8"
+    />
+  </g>
+
+  <!-- Left/Right Sleeve seams -->
+  <path d="M 235 300 C 230 245, 225 185, 225 145" stroke="#101e33" stroke-width="2.5" fill="none"/>
+  <path d="M 565 300 C 570 245, 575 185, 575 145" stroke="#101e33" stroke-width="2.5" fill="none"/>
+
+  <!-- Fold & Shadow shading -->
+  <path d="M 235 300 C 255 350, 260 450, 250 550" stroke="#000000" stroke-width="3" fill="none" opacity="0.2"/>
+  <path d="M 565 300 C 545 350, 540 450, 550 550" stroke="#000000" stroke-width="3" fill="none" opacity="0.2"/>
+
+  <!-- Chest Patch Pocket with contrasting rotated pattern or solid accent -->
+  <g transform="translate(285, 330)">
+    <path d="M 0 0 L 70 0 L 70 80 C 70 95, 45 105, 35 105 C 25 105, 0 95, 0 80 Z" fill="#faf8f5" stroke="#162947" stroke-width="2"/>
+    <line x1="0" y1="35" x2="70" y2="35" stroke="#162947" stroke-width="14"/>
+    <line x1="0" y1="75" x2="70" y2="75" stroke="#162947" stroke-width="14"/>
+    <circle cx="35" cy="18" r="4" fill="#d97706" />
+  </g>
+
+  <!-- Spread Camp Collar -->
+  <path d="M 315 125 L 365 240 L 400 235 L 355 142 Z" fill="#faf8f5" stroke="#162947" stroke-width="2"/>
+  <path d="M 485 125 L 435 240 L 400 235 L 445 142 Z" fill="#eae4db" stroke="#162947" stroke-width="2"/>
+  <path d="M 355 142 C 375 152, 425 152, 445 142 C 435 125, 365 125, 355 142 Z" fill="#162947"/>
+
+  <!-- Bottom Hem -->
+  <line x1="235" y1="840" x2="565" y2="840" stroke="#162947" stroke-width="3"/>
+</svg>

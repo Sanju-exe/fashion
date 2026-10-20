@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgStudioF" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#312a38"/>
+      <stop offset="60%" stop-color="#1d1724"/>
+      <stop offset="100%" stop-color="#0f0c13"/>
+    </linearGradient>
+    <radialGradient id="spotlightF" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#70587d" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skinToneF" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d3be"/>
+      <stop offset="50%" stop-color="#ecc0a6"/>
+      <stop offset="100%" stop-color="#d9a789"/>
+    </linearGradient>
+    <linearGradient id="hairF" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c141d"/>
+      <stop offset="100%" stop-color="#0a070b"/>
+    </linearGradient>
+    <linearGradient id="underShirtF" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f4757"/>
+      <stop offset="50%" stop-color="#352f3d"/>
+      <stop offset="100%" stop-color="#1e1a24"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Studio Backdrop -->
+  <rect width="800" height="1100" fill="url(#bgStudioF)"/>
+  <rect width="800" height="1100" fill="url(#spotlightF)"/>
+
+  <!-- Female Model Silhouette -->
+  <!-- Long Flowing Hair (Back layer) -->
+  <path d="M 300 230 C 270 380, 260 520, 275 620 L 525 620 C 540 520, 530 380, 500 230 Z" fill="url(#hairF)"/>
+
+  <!-- Neck -->
+  <path d="M 370 295 L 370 410 C 385 422, 415 422, 430 410 L 430 295 Z" fill="url(#skinToneF)"/>
+
+  <!-- Shoulders & Arms -->
+  <path d="M 370 385 C 315 400, 255 428, 205 470 C 190 520, 185 620, 180 730 L 240 738 C 248 645, 255 550, 275 490 L 275 920 L 525 920 L 525 490 C 545 550, 552 645, 560 738 L 620 730 C 615 620, 610 520, 595 470 C 545 428, 485 400, 430 385 Z" fill="url(#skinToneF)"/>
+
+  <!-- Fitted Tank Top -->
+  <path d="
+    M 365 410
+    C 385 440, 415 440, 435 410
+    C 470 422, 510 440, 545 475
+    L 520 530
+    L 510 500
+    L 510 910
+    L 290 910
+    L 290 500
+    L 280 530
+    L 255 475
+    C 290 440, 330 422, 365 410
+    Z"
+    fill="url(#underShirtF)"
+    stroke="#221e29"
+    stroke-width="1.5"
+  />
+
+  <!-- Neutral Dark Trousers -->
+  <path d="M 290 910 L 510 910 L 515 1100 L 285 1100 Z" fill="#131018"/>
+
+  <!-- Head & Face -->
+  <ellipse cx="400" cy="245" rx="66" ry="86" fill="url(#skinToneF)"/>
+
+  <!-- Hair (Front framing layer) -->
+  <path d="M 334 210 C 330 140, 470 140, 466 210 C 450 155, 350 155, 334 210 Z" fill="url(#hairF)"/>
+  <path d="M 334 210 C 315 280, 310 370, 320 460 C 335 460, 345 360, 350 250 Z" fill="url(#hairF)"/>
+  <path d="M 466 210 C 485 280, 490 370, 480 460 C 465 460, 455 360, 450 250 Z" fill="url(#hairF)"/>
+
+  <!-- Ears & Delicate Pearl Earrings -->
+  <ellipse cx="334" cy="250" rx="6" ry="13" fill="url(#skinToneF)"/>
+  <ellipse cx="466" cy="250" rx="6" ry="13" fill="url(#skinToneF)"/>
+  <circle cx="334" cy="265" r="3.5" fill="#f8fafc"/>
+  <circle cx="466" cy="265" r="3.5" fill="#f8fafc"/>
+
+  <!-- Facial Features -->
+  <!-- Eyebrows -->
+  <path d="M 358 228 Q 374 221 386 227" stroke="#1c141d" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M 442 228 Q 426 221 414 227" stroke="#1c141d" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <!-- Eyes -->
+  <ellipse cx="374" cy="237" rx="5.5" ry="3" fill="#1d161a"/>
+  <ellipse cx="426" cy="237" rx="5.5" ry="3" fill="#1d161a"/>
+  <!-- Nose -->
+  <path d="M 400 232 L 398 258 L 403 258" stroke="#be8d72" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <!-- Lips -->
+  <path d="M 390 278 Q 400 284 410 278" stroke="#c06c64" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+
+  <text x="400" y="1060" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="#a89cb5" text-anchor="middle" letter-spacing="3">STUDIO PRESET: MAYA (FEMALE 176CM)</text>
+</svg>

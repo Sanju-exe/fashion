@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="silkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7" />
+      <stop offset="35%" stop-color="#f3ede3" />
+      <stop offset="70%" stop-color="#e8decb" />
+      <stop offset="100%" stop-color="#ded0bb" />
+    </linearGradient>
+    <linearGradient id="silkSheen" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="30%" stop-color="#f8f4eb" stop-opacity="0.1"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ab997e" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="silkShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#3a2f20" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#silkShadow)">
+    <!-- Base Shirt Shape -->
+    <path d="
+      M 310 125
+      C 340 145, 460 145, 490 125
+      C 555 140, 635 175, 725 240
+      C 705 295, 680 350, 650 385
+      C 605 350, 580 325, 565 305
+      L 565 830
+      C 565 845, 550 855, 535 855
+      L 265 855
+      C 250 855, 235 845, 235 830
+      L 235 305
+      C 220 325, 195 350, 150 385
+      C 120 350,  95 295,  75 240
+      C 165 175, 245 140, 310 125
+      Z"
+      fill="url(#silkGrad)"
+      stroke="#c8bba8"
+      stroke-width="1.8"
+    />
+  </g>
+
+  <!-- Luminous Sheen Layer -->
+  <path d="
+    M 310 125
+    C 340 145, 460 145, 490 125
+    C 555 140, 635 175, 725 240
+    C 705 295, 680 350, 650 385
+    C 605 350, 580 325, 565 305
+    L 565 830
+    L 235 830
+    L 235 305
+    C 220 325, 195 350, 150 385
+    C 120 350,  95 295,  75 240
+    C 165 175, 245 140, 310 125
+    Z"
+    fill="url(#silkSheen)"
+  />
+
+  <!-- Center Placket Strip -->
+  <path d="M 388 245 L 388 855 L 412 855 L 412 245 Z" fill="#ebe1d0" stroke="#d5c7b3" stroke-width="1"/>
+  <line x1="400" y1="245" x2="400" y2="855" stroke="#bfaa92" stroke-width="1.2" stroke-dasharray="6,4"/>
+
+  <!-- Mother of Pearl Buttons -->
+  <g fill="#fffbf5" stroke="#a38f75" stroke-width="1.2">
+    <circle cx="400" cy="300" r="6" />
+    <circle cx="400" cy="390" r="6" />
+    <circle cx="400" cy="480" r="6" />
+    <circle cx="400" cy="570" r="6" />
+    <circle cx="400" cy="660" r="6" />
+    <circle cx="400" cy="750" r="6" />
+  </g>
+  <!-- Button thread dots -->
+  <g fill="#8f7a60">
+    <circle cx="398" cy="299" r="1"/><circle cx="402" cy="301" r="1"/>
+    <circle cx="398" cy="389" r="1"/><circle cx="402" cy="391" r="1"/>
+    <circle cx="398" cy="479" r="1"/><circle cx="402" cy="481" r="1"/>
+    <circle cx="398" cy="569" r="1"/><circle cx="402" cy="571" r="1"/>
+    <circle cx="398" cy="659" r="1"/><circle cx="402" cy="661" r="1"/>
+    <circle cx="398" cy="749" r="1"/><circle cx="402" cy="751" r="1"/>
+  </g>
+
+  <!-- Fluid Draped Folds -->
+  <path d="M 285 240 C 310 380, 290 560, 310 740" stroke="#bead98" stroke-width="3" fill="none" opacity="0.45"/>
+  <path d="M 515 240 C 490 380, 510 560, 490 740" stroke="#bead98" stroke-width="3" fill="none" opacity="0.45"/>
+  <path d="M 330 380 C 365 420, 380 460, 360 540" stroke="#d5c5b2" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- Cuban Camp Collar Lapels (Left and Right Wings) -->
+  <!-- Left Collar Wing -->
+  <path d="M 305 125 L 360 250 L 400 245 L 350 140 Z" fill="#f8f4ec" stroke="#baaa96" stroke-width="1.8" filter="url(#silkShadow)"/>
+  <!-- Right Collar Wing -->
+  <path d="M 495 125 L 440 250 L 400 245 L 450 140 Z" fill="#efe6d8" stroke="#baaa96" stroke-width="1.8" filter="url(#silkShadow)"/>
+  <!-- Back of Neck Band -->
+  <path d="M 350 140 C 380 152, 420 152, 450 140 C 440 120, 360 120, 350 140 Z" fill="#ded2bf" stroke="#c0b09b" stroke-width="1.2"/>
+
+  <!-- Chest Patch Pocket (Left side) -->
+  <path d="M 275 320 L 335 320 L 335 390 C 335 405, 315 415, 305 415 C 295 415, 275 405, 275 390 Z" fill="#f9f5ed" stroke="#cfc1af" stroke-width="1.5" opacity="0.85"/>
+  <line x1="275" y1="332" x2="335" y2="332" stroke="#c2b19d" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

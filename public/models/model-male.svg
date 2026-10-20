@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgStudioM" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a2e39"/>
+      <stop offset="60%" stop-color="#181a20"/>
+      <stop offset="100%" stop-color="#0f1014"/>
+    </linearGradient>
+    <radialGradient id="spotlightM" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#4a5568" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skinToneM" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8be99"/>
+      <stop offset="50%" stop-color="#deb087"/>
+      <stop offset="100%" stop-color="#c9956d"/>
+    </linearGradient>
+    <linearGradient id="hairM" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2b1d16"/>
+      <stop offset="100%" stop-color="#120c08"/>
+    </linearGradient>
+    <linearGradient id="underShirtM" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#555866"/>
+      <stop offset="50%" stop-color="#3d404d"/>
+      <stop offset="100%" stop-color="#252730"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Studio Backdrop -->
+  <rect width="800" height="1100" fill="url(#bgStudioM)"/>
+  <rect width="800" height="1100" fill="url(#spotlightM)"/>
+
+  <!-- Male Model Silhouette & Features -->
+  <!-- Neck -->
+  <path d="M 360 290 L 360 410 C 375 425, 425 425, 440 410 L 440 290 Z" fill="url(#skinToneM)"/>
+
+  <!-- Shoulders & Arms -->
+  <!-- Left Shoulder to Arm -->
+  <path d="M 360 380 C 300 395, 230 425, 175 470 C 160 520, 150 630, 145 740 L 210 750 C 220 650, 230 550, 255 490 L 255 920 L 545 920 L 545 490 C 570 550, 580 650, 590 750 L 655 740 C 650 630, 640 520, 625 470 C 570 425, 500 395, 440 380 Z" fill="url(#skinToneM)"/>
+
+  <!-- Fitted Neutral Base Undershirt -->
+  <path d="
+    M 365 405
+    C 385 435, 415 435, 435 405
+    C 485 418, 540 435, 580 475
+    L 555 530
+    L 535 500
+    L 535 910
+    L 265 910
+    L 265 500
+    L 245 530
+    L 220 475
+    C 260 435, 315 418, 365 405
+    Z"
+    fill="url(#underShirtM)"
+    stroke="#22242c"
+    stroke-width="1.5"
+  />
+
+  <!-- Neutral Dark Trousers -->
+  <path d="M 265 910 L 535 910 L 540 1100 L 260 1100 Z" fill="#13151a"/>
+
+  <!-- Head & Face -->
+  <ellipse cx="400" cy="245" rx="72" ry="92" fill="url(#skinToneM)"/>
+  <!-- Hair -->
+  <path d="M 325 230 C 320 150, 480 150, 475 230 C 460 180, 340 180, 325 230 Z" fill="url(#hairM)"/>
+  <path d="M 325 220 C 330 140, 470 140, 475 220 C 450 145, 350 145, 325 220 Z" fill="#443024"/>
+
+  <!-- Ears -->
+  <ellipse cx="328" cy="248" rx="8" ry="16" fill="url(#skinToneM)"/>
+  <ellipse cx="472" cy="248" rx="8" ry="16" fill="url(#skinToneM)"/>
+
+  <!-- Facial Features (Minimalist Fashion Silhouette) -->
+  <!-- Eyebrows -->
+  <path d="M 355 225 Q 375 220 388 226" stroke="#2b1d16" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 445 225 Q 425 220 412 226" stroke="#2b1d16" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Eyes -->
+  <ellipse cx="372" cy="236" rx="6" ry="3.5" fill="#1f1813"/>
+  <ellipse cx="428" cy="236" rx="6" ry="3.5" fill="#1f1813"/>
+  <!-- Nose -->
+  <path d="M 400 230 L 396 260 L 404 260" stroke="#b8835d" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- Lips -->
+  <path d="M 388 280 Q 400 286 412 280" stroke="#a7684b" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Studio lighting accent -->
+  <text x="400" y="1060" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="#64748b" text-anchor="middle" letter-spacing="3">STUDIO PRESET: ALEX (MALE 182CM)</text>
+</svg>
