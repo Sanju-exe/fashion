@@ -246,14 +246,27 @@ function renderAppShell() {
                   </div>
                 </div>
                 <div class="capture-modal-footer">
-                  <button class="btn-capture-flip" id="btnCaptureModalFlip" title="Switch Camera">
-                    ⇄ Flip Mirror
-                  </button>
+                  <div class="capture-footer-actions">
+                    <button class="btn-capture-flip" id="btnCaptureModalFlip" title="Mirror / Unmirror Camera View">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+                      <span>Flip Mirror</span>
+                    </button>
+                    <button class="btn-capture-flip btn-switch-camera" id="btnCaptureModalSwitchCam" title="Switch between Front and Rear Camera">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <path d="M9 13a3 3 0 0 0 5.46 1.73"/>
+                        <path d="M15 13a3 3 0 0 0-5.46-1.73"/>
+                        <polyline points="15 8 15 11 18 11"/>
+                        <polyline points="9 18 9 15 6 15"/>
+                      </svg>
+                      <span>Flip Camera</span>
+                    </button>
+                  </div>
                   <button class="btn-capture-snap" id="btnCaptureModalSnap">
                     <span class="snap-shutter-inner"></span>
                     <span class="snap-text">Click Photo</span>
                   </button>
-                  <div style="width: 80px;"></div>
+                  <div class="capture-footer-spacer"></div>
                 </div>
               </div>
             </div>
@@ -1344,31 +1357,170 @@ function setupEventListeners() {
   const btnCaptureModalClose = document.getElementById('btnCaptureModalClose');
   const btnCaptureModalSnap = document.getElementById('btnCaptureModalSnap');
   const btnCaptureModalFlip = document.getElementById('btnCaptureModalFlip');
+  const btnCaptureModalSwitchCam = document.getElementById('btnCaptureModalSwitchCam');
   const cleanCaptureCameraBox = document.getElementById('cleanCaptureCameraBox');
   const btnCleanRetakePhoto = document.getElementById('btnCleanRetakePhoto');
   const btnSidebarLivePhoto = document.getElementById('btnSidebarLivePhoto');
 
   let captureStream = null;
   let isCaptureMirrored = true;
+  let captureFacingMode = 'user'; // 'user' (front) | 'environment' (rear)
+  let isSwitchingCamera = false;
 
-  async function openLiveCameraCapture() {
+  async function openLiveCameraCapture(preferredFacingMode = null) {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       showToast('Camera API is not supported in this browser.', 'error');
       return;
     }
+
+    if (preferredFacingMode) {
+      captureFacingMode = preferredFacingMode;
+    }
+
+    // Stop existing stream tracks cleanly if already open
+    if (captureStream) {
+      captureStream.getTracks().forEach(t => t.stop());
+      captureStream = null;
+    }
+    if (captureModalVideo) {
+      captureModalVideo.srcObject = null;
+    }
+
     try {
       captureModalOverlay.style.display = 'flex';
+      
+      // Front camera default to mirrored, rear camera default to non-mirrored
+      if (captureFacingMode === 'environment') {
+        isCaptureMirrored = false;
+      } else {
+        isCaptureMirrored = true;
+      }
       captureModalVideo.style.transform = isCaptureMirrored ? 'scaleX(-1)' : 'none';
-      captureStream = await navigator.mediaDevices.getUserMedia({
-        video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' },
+
+      // Build constraints with fallback
+      const constraints = {
+        video: {
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          facingMode: { ideal: captureFacingMode }
+        },
         audio: false
-      });
+      };
+
+      try {
+        captureStream = await navigator.mediaDevices.getUserMedia(constraints);
+      } catch (firstErr) {
+        console.warn(`Exact facingMode ${captureFacingMode} failed, trying general video:`, firstErr);
+        // Fallback to any available video stream
+        captureStream = await navigator.mediaDevices.getUserMedia({
+          video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+          audio: false
+        });
+      }
+
       captureModalVideo.srcObject = captureStream;
       await captureModalVideo.play();
     } catch (err) {
       console.error('Camera open error:', err);
       captureModalOverlay.style.display = 'none';
-      showToast(`Unable to open camera: ${err.message || 'Permission denied'}`, 'error');
+      const msg = err.name === 'NotAllowedError'
+        ? 'Camera permission denied. Please allow camera access in your browser settings.'
+        : (err.name === 'NotFoundError' || err.name === 'OverconstrainedError'
+          ? 'Requested camera is not available on this device.'
+          : `Unable to open camera: ${err.message || 'Error occurred'}`);
+      showToast(msg, 'error');
+    }
+  }
+
+  async function switchCameraFacingMode() {
+    if (isSwitchingCamera) return;
+    isSwitchingCamera = true;
+
+    try {
+      // Check available video devices
+      let videoDevices = [];
+      if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+        const devices = await navigator.mediaDevices.enumerateDevices().catch(() => []);
+        videoDevices = devices.filter(d => d.kind === 'videoinput');
+      }
+
+      // If only one camera exists on the device
+      if (videoDevices.length === 1) {
+        showToast('Only one camera is detected on this device.', 'info');
+      }
+
+      // Toggle between 'user' and 'environment'
+      const nextFacingMode = captureFacingMode === 'user' ? 'environment' : 'user';
+      const cameraLabel = nextFacingMode === 'environment' ? 'Rear (Back)' : 'Front (Selfie)';
+      showToast(`Switching to ${cameraLabel} camera...`, 'info');
+
+      // Teardown current stream completely
+      if (captureStream) {
+        captureStream.getTracks().forEach(t => t.stop());
+        captureStream = null;
+      }
+      if (captureModalVideo) {
+        captureModalVideo.srcObject = null;
+      }
+
+      // Request new stream with the toggled facingMode
+      captureFacingMode = nextFacingMode;
+      isCaptureMirrored = (captureFacingMode === 'user');
+      captureModalVideo.style.transform = isCaptureMirrored ? 'scaleX(-1)' : 'none';
+
+      let newStream;
+      try {
+        newStream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+            facingMode: { exact: captureFacingMode }
+          },
+          audio: false
+        });
+      } catch (exactErr) {
+        console.warn('Exact facingMode constraint rejected, attempting ideal constraint:', exactErr);
+        newStream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+            facingMode: { ideal: captureFacingMode }
+          },
+          audio: false
+        });
+      }
+
+      captureStream = newStream;
+      captureModalVideo.srcObject = newStream;
+      await captureModalVideo.play();
+      showToast(`Switched to ${cameraLabel} camera!`, 'success');
+    } catch (err) {
+      console.error('Camera switch error:', err);
+      // If requested camera is unavailable or error occurs, display appropriate message
+      const errMsg = err.name === 'NotAllowedError'
+        ? 'Camera permission denied.'
+        : (err.name === 'NotFoundError' || err.name === 'OverconstrainedError'
+          ? `The requested ${captureFacingMode === 'environment' ? 'rear' : 'front'} camera is unavailable on this device.`
+          : `Could not switch camera: ${err.message || 'Unavailable'}`);
+      showToast(errMsg, 'error');
+
+      // Attempt to restore previous camera stream if possible
+      try {
+        const fallbackMode = captureFacingMode === 'user' ? 'environment' : 'user';
+        captureFacingMode = fallbackMode;
+        isCaptureMirrored = (captureFacingMode === 'user');
+        captureModalVideo.style.transform = isCaptureMirrored ? 'scaleX(-1)' : 'none';
+        captureStream = await navigator.mediaDevices.getUserMedia({
+          video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+          audio: false
+        });
+        captureModalVideo.srcObject = captureStream;
+        await captureModalVideo.play();
+      } catch (restoreErr) {
+        console.warn('Could not restore fallback camera stream:', restoreErr);
+      }
+    } finally {
+      isSwitchingCamera = false;
     }
   }
 
@@ -1440,6 +1592,10 @@ function setupEventListeners() {
         captureModalVideo.style.transform = isCaptureMirrored ? 'scaleX(-1)' : 'none';
       }
     };
+  }
+
+  if (btnCaptureModalSwitchCam) {
+    btnCaptureModalSwitchCam.onclick = () => switchCameraFacingMode();
   }
 
   if (btnCaptureModalSnap) {

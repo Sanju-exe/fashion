@@ -674,6 +674,10 @@ def run_ai_neural_diffusion_tryon(person_bgr, garment_id: str):
             if os.path.exists(out_path):
                 gen_bgr = cv2.imread(out_path)
                 if gen_bgr is not None:
+                    orig_h, orig_w = person_bgr.shape[:2]
+                    # Ensure generated result strictly maintains identical proportions and dimensions of original photo
+                    if (gen_bgr.shape[0], gen_bgr.shape[1]) != (orig_h, orig_w):
+                        gen_bgr = cv2.resize(gen_bgr, (orig_w, orig_h), interpolation=cv2.INTER_LANCZOS4)
                     return gen_bgr, "IDM-VTON Neural Diffusion Engine (HuggingFace ZeroGPU)"
     except Exception as api_err:
         print("[AI Pipeline] Online Diffusion API notice/error:", api_err)
