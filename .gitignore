@@ -37,4 +37,6 @@ venv/
 .venv/
 env/
 .env/
+# Ignore PDF reports
+*.pdf
 
