@@ -47,6 +47,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REAL_CLOTHES_DIR = os.path.join(BASE_DIR, "public", "clothes", "real")
 CUTOUTS_DIR = os.path.join(BASE_DIR, "public", "clothes", "real_cutouts")
 MODELS_DIR = os.path.join(BASE_DIR, "public", "models", "real")
+CUSTOM_UPLOADS_DIR = os.path.join(BASE_DIR, "public", "clothes", "uploaded")
+os.makedirs(CUSTOM_UPLOADS_DIR, exist_ok=True)
+
+# Mount public assets so uploaded garment images and cutouts can be served directly
+PUBLIC_DIR = os.path.join(BASE_DIR, "public")
+if os.path.exists(PUBLIC_DIR):
+    app.mount("/clothes", StaticFiles(directory=os.path.join(PUBLIC_DIR, "clothes")), name="clothes")
+    if os.path.exists(os.path.join(PUBLIC_DIR, "models")):
+        app.mount("/models", StaticFiles(directory=os.path.join(PUBLIC_DIR, "models")), name="models")
 
 # Catalog of the 5 authentic shirts provided by the user
 REAL_GARMENTS = [

@@ -5,6 +5,18 @@ import { preloadGarmentImage, TorsoSmoother, renderVirtualGarment, captureStudio
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000';
 
+export function resolveGarmentImageUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  // If it's a backend custom upload like /clothes/uploaded/...
+  if (url.startsWith('/clothes/uploaded')) {
+    return `${API_BASE}${url}`;
+  }
+  return url;
+}
+
 /* ==========================================================================
    APPLICATION STATE
    ========================================================================== */
@@ -78,7 +90,7 @@ async function initApp() {
   setupEventListeners();
 
   // Preload initial garment cutout
-  currentGarmentCutoutImg = await preloadGarmentImage(state.selectedGarment.cutout || state.selectedGarment.image);
+  currentGarmentCutoutImg = await preloadGarmentImage(resolveGarmentImageUrl(state.selectedGarment.cutout || state.selectedGarment.image));
 
   // Initialize MediaPipe Pose detector in background for Live AR
   initPoseDetector().then(detector => {
@@ -179,7 +191,7 @@ function renderAppShell() {
             ← Return to Collection
           </button>
           <div class="current-shirt-badge">
-            <img class="badge-thumb" id="studioCurrentThumb" src="${state.selectedGarment.image}" alt="Garment" />
+            <img class="badge-thumb" id="studioCurrentThumb" src="${resolveGarmentImageUrl(state.selectedGarment.image)}" alt="Garment" />
             <span class="badge-name" id="studioCurrentName">${state.selectedGarment.name}</span>
           </div>
         </div>
@@ -358,9 +370,9 @@ function renderAppShell() {
           <div class="panel-section">
             <div class="panel-section-title">Select Authentic Garment</div>
             <div class="shirt-switch-grid" id="shirtSwitchGrid">
-              ${REAL_GARMENTS.map(item => `
+              ${state.garments.map(item => `
                 <div class="switch-thumb-card ${item.id === state.selectedGarment.id ? 'active' : ''}" data-shirt-id="${item.id}">
-                  <img src="${item.image}" alt="${item.name}" />
+                  <img src="${resolveGarmentImageUrl(item.image)}" alt="${item.name}" />
                   <span class="switch-thumb-name">${item.name}</span>
                 </div>
               `).join('')}
@@ -602,7 +614,7 @@ function renderClothingCards() {
     <article class="clothing-card" data-shirt-id="${item.id}">
       <div class="card-image-wrap">
         <span class="card-badge">${item.badge || 'Pure Luxury'}</span>
-        <img src="${item.image}" alt="${item.name}" loading="lazy" />
+        <img src="${resolveGarmentImageUrl(item.image)}" alt="${item.name}" loading="lazy" />
         <div class="card-tryon-hint">
           <span>✨ AI Virtual Try-On</span>
         </div>
@@ -639,7 +651,7 @@ function openDetailModal(garment) {
     <button class="modal-close-btn" id="btnCloseDetailModal">✕</button>
 
     <div class="modal-preview-side">
-      <img class="modal-preview-img" src="${garment.image}" alt="${garment.name}" />
+      <img class="modal-preview-img" src="${resolveGarmentImageUrl(garment.image)}" alt="${garment.name}" />
     </div>
 
     <div class="modal-info-side">
@@ -738,7 +750,7 @@ function updateStudioGarmentBadge() {
   const thumb = document.getElementById('studioCurrentThumb');
   const name = document.getElementById('studioCurrentName');
   if (thumb && name) {
-    thumb.src = state.selectedGarment.image;
+    thumb.src = resolveGarmentImageUrl(state.selectedGarment.image);
     name.innerText = state.selectedGarment.name;
   }
 }
@@ -913,7 +925,7 @@ async function startCameraTryOn() {
   stageLoading.style.display = 'flex';
   loadingText.innerText = 'INITIALIZING CAMERA FEED...';
 
-  currentGarmentCutoutImg = await preloadGarmentImage(state.selectedGarment.cutout || state.selectedGarment.image);
+  currentGarmentCutoutImg = await preloadGarmentImage(resolveGarmentImageUrl(state.selectedGarment.cutout || state.selectedGarment.image));
 
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -1216,7 +1228,7 @@ function setupEventListeners() {
           if (switchGrid) {
             switchGrid.innerHTML = state.garments.map(item => `
               <div class="switch-thumb-card ${item.id === state.selectedGarment.id ? 'active' : ''}" data-shirt-id="${item.id}">
-                <img src="${item.image}" alt="${item.name}" />
+                <img src="${resolveGarmentImageUrl(item.image)}" alt="${item.name}" />
                 <span class="switch-thumb-name">${item.name}</span>
               </div>
             `).join('');
@@ -1329,7 +1341,7 @@ function setupEventListeners() {
       c.classList.toggle('active', c.dataset.shirtId === shirt.id);
     });
 
-    currentGarmentCutoutImg = await preloadGarmentImage(shirt.cutout || shirt.image);
+    currentGarmentCutoutImg = await preloadGarmentImage(resolveGarmentImageUrl(shirt.cutout || shirt.image));
 
     // If an AI result was previously generated, re-render it for the new garment
     if (state.currentMode === 'photo_ai' && state.aiResultDataUrl) {
