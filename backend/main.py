@@ -614,13 +614,22 @@ def photorealistic_neural_tryon(person_bgr, garment_id):
     return result_bgr
 
 import tempfile
-from gradio_client import Client, handle_file
+
+try:
+    from gradio_client import Client, handle_file
+    HAS_GRADIO_CLIENT = True
+except ImportError:
+    Client = None
+    handle_file = None
+    HAS_GRADIO_CLIENT = False
 
 # Global Gradio IDM-VTON client (lazy-loaded or singleton)
 _idm_vton_client = None
 
 def get_vton_client():
     global _idm_vton_client
+    if not HAS_GRADIO_CLIENT:
+        return None
     if _idm_vton_client is None:
         try:
             print("[AI Pipeline] Connecting to IDM-VTON Neural Try-On Diffusion Cloud...")
