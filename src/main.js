@@ -100,34 +100,15 @@ function renderAppShell() {
           <circle cx="4" cy="14" r="3" fill="currentColor"/>
           <path d="M7 7L21 21M7 21L21 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
-        <span class="brand-text">NEST</span>
+        <span class="brand-text">VERVE AR</span>
       </div>
 
-      <nav class="nav-links">
-        <button class="nav-link-btn active" data-nav="home">Home</button>
-        <button class="nav-link-btn" data-nav="products">Products</button>
-        <button class="nav-link-btn" data-nav="man">Man</button>
-        <button class="nav-link-btn" data-nav="women">Women</button>
-        <button class="nav-link-btn" data-nav="about">About Us</button>
-      </nav>
-
       <div class="header-actions">
-        <button class="btn-icon-nav" id="btnNavSearch" title="Search Garments">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        </button>
-        <div class="nav-user-item">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span class="nav-user-text">Sign In</span>
-        </div>
-        <button class="btn-icon-nav" id="btnNavWishlist" title="Saved Favorites">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-        </button>
-        <button class="btn-icon-nav cart-btn" id="btnNavCart" title="Cart">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <span class="cart-pill-count">2</span>
-        </button>
         <button class="btn-add-shirt-nav" id="btnOpenAddShirt">
-          <span style="font-size:1.1rem; line-height:1;">+</span>
+          <svg class="add-shirt-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
           <span>Add Shirt</span>
         </button>
       </div>
@@ -140,7 +121,7 @@ function renderAppShell() {
             <span class="hero-line-1">Elevated</span>
             <span class="hero-line-2">Style. Luxury with</span>
             <span class="hero-line-3">
-              <span class="hero-brand-callout">NEST</span>
+              <span class="hero-brand-callout">VERVE AR</span>
               <button class="hero-explore-pill" id="btnHeroExplore">
                 <span>Explore Products</span>
               </button>
@@ -626,11 +607,14 @@ function renderClothingCards() {
           <span>✨ AI Virtual Try-On</span>
         </div>
 
-        <!-- NEST Style Frosted Price & Cart Overlay Pill -->
-        <div class="card-price-overlay">
-          <span class="card-price-text">${item.price || '$380.00'}</span>
-          <button class="card-bag-btn" title="Quick Try-On & Bag">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <!-- Minimalist Luxury Action Pill (No Prices) -->
+        <div class="card-action-overlay">
+          <span class="card-action-text">Virtual Try-On</span>
+          <button class="card-action-circle" title="Try On this Garment">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
           </button>
         </div>
       </div>
@@ -1092,29 +1076,8 @@ function setupEventListeners() {
     };
   }
 
-  // Navigation Links
-  document.querySelectorAll('.nav-link-btn').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelectorAll('.nav-link-btn').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      const target = link.dataset.nav;
-      if (target === 'products' || target === 'home') {
-        document.getElementById('clothingGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        showToast(`Viewing ${link.innerText} collection`, 'info');
-      }
-    });
-  });
-
-  const btnNavWishlist = document.getElementById('btnNavWishlist');
-  if (btnNavWishlist) {
-    btnNavWishlist.onclick = () => showToast('Your Saved Favorites atelier collection', 'info');
-  }
-
-  const btnNavCart = document.getElementById('btnNavCart');
-  if (btnNavCart) {
-    btnNavCart.onclick = () => showToast('2 luxury garments reserved for fitting in your bag', 'info');
-  }
+  // Two-Finger Horizontal Swipe Navigation for mobile browsers
+  setupTwoFingerSwipeNavigation();
 
   // Clothing Card Select
   document.getElementById('clothingGrid').addEventListener('click', e => {
@@ -1860,6 +1823,73 @@ function showQuotaExhaustedAlert(customMessage) {
   overlay.onclick = (e) => {
     if (e.target === overlay) overlay.remove();
   };
+}
+
+/* ==========================================================================
+   MOBILE TWO-FINGER HORIZONTAL SWIPE NAVIGATION GESTURE
+   Detects intentional 2-finger horizontal swipe to return to previous page/view
+   ========================================================================== */
+function setupTwoFingerSwipeNavigation() {
+  let touchStartX1 = 0, touchStartY1 = 0;
+  let touchStartX2 = 0, touchStartY2 = 0;
+  let isTwoFingerGesture = false;
+  let gestureStartTime = 0;
+
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      isTwoFingerGesture = true;
+      gestureStartTime = performance.now();
+      touchStartX1 = e.touches[0].clientX;
+      touchStartY1 = e.touches[0].clientY;
+      touchStartX2 = e.touches[1].clientX;
+      touchStartY2 = e.touches[1].clientY;
+    } else {
+      isTwoFingerGesture = false;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    if (!isTwoFingerGesture) return;
+    isTwoFingerGesture = false;
+
+    // Check if touch duration was within reasonable swipe duration (< 800ms)
+    const elapsed = performance.now() - gestureStartTime;
+    if (elapsed > 800) return;
+
+    if (e.changedTouches.length > 0) {
+      // Find average ending position
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+      const startAvgX = (touchStartX1 + touchStartX2) / 2;
+      const startAvgY = (touchStartY1 + touchStartY2) / 2;
+
+      const deltaX = endX - startAvgX;
+      const deltaY = endY - startAvgY;
+
+      // Require distinct horizontal swipe (> 65px) with low vertical variance
+      if (Math.abs(deltaX) > 65 && Math.abs(deltaY) < 70) {
+        // Swipe Right (or Left) returns to previous page/view
+        const studioView = document.getElementById('studioView');
+        const detailOverlay = document.getElementById('detailModalOverlay');
+        const addShirtOverlay = document.getElementById('addShirtModalOverlay');
+        const captureOverlay = document.getElementById('captureModalOverlay');
+
+        if (captureOverlay && captureOverlay.style.display !== 'none') {
+          // Close camera snapshot modal
+          document.getElementById('btnCaptureModalClose')?.click();
+          showToast('Returned from camera', 'info');
+        } else if (studioView && studioView.classList.contains('active')) {
+          // Exit studio view to catalog
+          document.getElementById('btnReturnToCatalog')?.click();
+          showToast('Returned to Collection', 'info');
+        } else if (addShirtOverlay && addShirtOverlay.classList.contains('open')) {
+          document.getElementById('btnCloseAddShirtModal')?.click();
+        } else if (detailOverlay && detailOverlay.classList.contains('open')) {
+          document.getElementById('btnCloseDetailModal')?.click();
+        }
+      }
+    }
+  }, { passive: true });
 }
 
 window.showQuotaExhaustedAlert = showQuotaExhaustedAlert;
