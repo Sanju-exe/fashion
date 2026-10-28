@@ -93,10 +93,39 @@ function renderAppShell() {
   return `
     <header class="header">
       <div class="brand" id="brandLogo">
-        <div class="brand-icon">V</div>
-        <span class="brand-text">VERVE</span>
+        <svg class="brand-symbol" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="4" r="3" fill="currentColor"/>
+          <circle cx="24" cy="14" r="3" fill="currentColor"/>
+          <circle cx="14" cy="24" r="3" fill="currentColor"/>
+          <circle cx="4" cy="14" r="3" fill="currentColor"/>
+          <path d="M7 7L21 21M7 21L21 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">NEST</span>
       </div>
+
+      <nav class="nav-links">
+        <button class="nav-link-btn active" data-nav="home">Home</button>
+        <button class="nav-link-btn" data-nav="products">Products</button>
+        <button class="nav-link-btn" data-nav="man">Man</button>
+        <button class="nav-link-btn" data-nav="women">Women</button>
+        <button class="nav-link-btn" data-nav="about">About Us</button>
+      </nav>
+
       <div class="header-actions">
+        <button class="btn-icon-nav" id="btnNavSearch" title="Search Garments">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <div class="nav-user-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="nav-user-text">Sign In</span>
+        </div>
+        <button class="btn-icon-nav" id="btnNavWishlist" title="Saved Favorites">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </button>
+        <button class="btn-icon-nav cart-btn" id="btnNavCart" title="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-pill-count">2</span>
+        </button>
         <button class="btn-add-shirt-nav" id="btnOpenAddShirt">
           <span style="font-size:1.1rem; line-height:1;">+</span>
           <span>Add Shirt</span>
@@ -105,10 +134,38 @@ function renderAppShell() {
     </header>
 
     <section class="hero">
-      <h1 class="hero-title">Real Garments. Genuine Identity.</h1>
-      <p class="hero-description">
-        Try on authentic designer shirts with natural fabric drape, realistic tension folds, and zero distortion to your face, hair, or skin tone.
-      </p>
+      <div class="hero-split-row">
+        <div class="hero-text-col">
+          <h1 class="hero-title">
+            <span class="hero-line-1">Elevated</span>
+            <span class="hero-line-2">Style. Luxury with</span>
+            <span class="hero-line-3">
+              <span class="hero-brand-callout">NEST</span>
+              <button class="hero-explore-pill" id="btnHeroExplore">
+                <span>Explore Products</span>
+              </button>
+            </span>
+          </h1>
+        </div>
+
+        <div class="hero-social-proof">
+          <div class="social-proof-divider"></div>
+          <div class="social-proof-content">
+            <div class="social-avatars-row">
+              <img class="avatar-thumb" src="/models/real/real_model_male.jpg" alt="Reviewer" />
+              <img class="avatar-thumb" src="/models/real/real_model_female.jpg" alt="Reviewer" />
+              <div class="avatar-thumb avatar-more">★</div>
+              <div class="social-metric-info">
+                <span class="metric-number">15K++ Positive</span>
+                <span class="metric-label">Reviews</span>
+              </div>
+            </div>
+            <p class="social-quote">
+              "Fashion is part of the daily air and it changes all the time, with all the events."
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div class="filter-bar" id="categoryFilterBar">
         ${renderCategoryFilterButtons()}
@@ -563,23 +620,24 @@ function renderClothingCards() {
   return list.map(item => `
     <article class="clothing-card" data-shirt-id="${item.id}">
       <div class="card-image-wrap">
-        <span class="card-badge">${item.badge || 'Design'}</span>
+        <span class="card-badge">${item.badge || 'Pure Luxury'}</span>
         <img src="${item.image}" alt="${item.name}" loading="lazy" />
         <div class="card-tryon-hint">
           <span>✨ AI Virtual Try-On</span>
+        </div>
+
+        <!-- NEST Style Frosted Price & Cart Overlay Pill -->
+        <div class="card-price-overlay">
+          <span class="card-price-text">${item.price || '$380.00'}</span>
+          <button class="card-bag-btn" title="Quick Try-On & Bag">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
         </div>
       </div>
       <div class="card-content">
         <span class="card-category">${item.category || 'Garment'}</span>
         <h3 class="card-title">${item.name}</h3>
         <p class="card-tagline">${item.tagline || item.description || ''}</p>
-        <div class="card-footer">
-          <span class="card-authentic-tag">Authentic Design</span>
-          <button class="card-action-btn">
-            <span>Try On</span>
-            <span>→</span>
-          </button>
-        </div>
       </div>
     </article>
   `).join('');
@@ -1025,6 +1083,38 @@ function setupEventListeners() {
     btn.classList.add('active');
     document.getElementById('clothingGrid').innerHTML = renderClothingCards();
   });
+
+  // Hero Explore Button
+  const btnExplore = document.getElementById('btnHeroExplore');
+  if (btnExplore) {
+    btnExplore.onclick = () => {
+      document.getElementById('clothingGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+  }
+
+  // Navigation Links
+  document.querySelectorAll('.nav-link-btn').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelectorAll('.nav-link-btn').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      const target = link.dataset.nav;
+      if (target === 'products' || target === 'home') {
+        document.getElementById('clothingGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        showToast(`Viewing ${link.innerText} collection`, 'info');
+      }
+    });
+  });
+
+  const btnNavWishlist = document.getElementById('btnNavWishlist');
+  if (btnNavWishlist) {
+    btnNavWishlist.onclick = () => showToast('Your Saved Favorites atelier collection', 'info');
+  }
+
+  const btnNavCart = document.getElementById('btnNavCart');
+  if (btnNavCart) {
+    btnNavCart.onclick = () => showToast('2 luxury garments reserved for fitting in your bag', 'info');
+  }
 
   // Clothing Card Select
   document.getElementById('clothingGrid').addEventListener('click', e => {

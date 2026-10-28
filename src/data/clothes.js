@@ -7,6 +7,7 @@ export const REAL_GARMENTS = [
   {
     id: 'shirt1',
     name: 'Zara Riviera Cream Striped Shirt',
+    price: '$380.00',
     category: 'Overshirt',
     tagline: 'Pure Flax Linen Blend // Classic Riviera Stripes',
     badge: 'Pure Linen',
@@ -28,6 +29,7 @@ export const REAL_GARMENTS = [
   {
     id: 'shirt2',
     name: 'Midnight Navy Pinstripe Overshirt',
+    price: '$420.00',
     category: 'Overshirt',
     tagline: 'Deep Indigo Slub // Vertical Micro-Stripe',
     badge: 'Artisan Dye',
@@ -49,6 +51,7 @@ export const REAL_GARMENTS = [
   {
     id: 'shirt3',
     name: 'Heritage Rust & Indigo Shadow Plaid',
+    price: '$450.00',
     category: 'Flannel',
     tagline: 'Heavy Brushed Twill // Dual-Tone Shadow Plaid',
     badge: 'Heritage Cut',
@@ -70,6 +73,7 @@ export const REAL_GARMENTS = [
   {
     id: 'shirt4',
     name: 'Urban Espresso Buffalo Check Flannel',
+    price: '$490.00',
     category: 'Flannel',
     tagline: '340 GSM Heavyweight Twill // Dark Espresso Plaid',
     badge: 'Cold Season',
@@ -91,6 +95,7 @@ export const REAL_GARMENTS = [
   {
     id: 'shirt5',
     name: 'Nordic Forest Green Buffalo Overshirt',
+    price: '$520.00',
     category: 'Overshirt',
     tagline: 'Alpine Wool & Cotton // Forest Green & Sand Plaid',
     badge: 'Winter Essential',
